@@ -12,6 +12,7 @@ import NotFound from "./pages/NotFound";
 import Ad from "./components/Ad";
 import AdList from "./components/AdList";
 import AdPage from "./pages/AdPage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Sidebar />
             <Routes>
               <Route path="/*" element={<NotFound />} />
+              <Route path="/search/:id" element={<SearchPage />} />
               <Route path="/seller/:sellerId" element={<SellerPage />} />
               <Route path="/ad/:adId" element={<AdPage />} />
               <Route path="/home" element={<Homepage />} />

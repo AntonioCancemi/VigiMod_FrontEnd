@@ -3,26 +3,18 @@ import { Button, Col, Container, Row, Form } from "react-bootstrap";
 import { BsSearch } from "react-icons/bs";
 import { BiSpreadsheet } from "react-icons/bi";
 import { RiVipDiamondLine } from "react-icons/ri";
-import {
-  TbLayoutSidebarLeftExpand,
-  TbLayoutSidebarRightExpand,
-} from "react-icons/tb";
 import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
 const Sidebar = () => {
-  const [expanded, setExpanded] = useState(false);
-
-  const toggleSidebar = () => {
-    setExpanded(!expanded);
-  };
   return (
-    <Col lg={"auto"} className="px-0 align-self-start sticky-top">
+    <Col lg={2} className="px-0 align-self-start sticky-top">
       <Container className="sidebar   fs-4 bg-secondary d-flex justify-content-between flex-column ">
         {/* TbLayoutSidebarLeftExpand; */}
 
         <div>
           <br />
           <br />
-          <Row>
+          {/* <Row>
             <Col xs={"auto"} className="text-start">
               <div variant="dark" onClick={toggleSidebar}>
                 {expanded ? (
@@ -32,20 +24,20 @@ const Sidebar = () => {
                 )}
               </div>
             </Col>
-          </Row>
+          </Row> */}
           <Row>
             <Col xs={"auto"}>
-              <Link to={"/search"}>
+              <div>
                 <BsSearch />
-                {expanded ? " SEARCH" : ""}
-              </Link>
+                <SearchBar />
+              </div>
             </Col>
           </Row>
           <Row>
             <Col xs={"auto"}>
               <Link to={"/home"}>
                 <BiSpreadsheet />
-                {expanded ? " ADS" : ""}
+                ADS
               </Link>
             </Col>
           </Row>
@@ -53,7 +45,7 @@ const Sidebar = () => {
             <Col xs={"auto"}>
               <Link to={"/pro"}>
                 <RiVipDiamondLine />
-                {expanded ? " PRO" : ""}
+                PRO
               </Link>
             </Col>
           </Row>
@@ -62,7 +54,7 @@ const Sidebar = () => {
           <Row>
             <Col xs={"auto"}>
               <RiVipDiamondLine />
-              {expanded ? " PRO" : ""}
+              PRO
             </Col>
           </Row>
         </div>

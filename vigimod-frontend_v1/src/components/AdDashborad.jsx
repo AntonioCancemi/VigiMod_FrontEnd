@@ -55,9 +55,6 @@ const AdDashboard = () => {
           <div key={key}>
             <SellerInfo sellerId={mappedData[key].key} />
             <AdList ads={mappedData[key].value} show={true}></AdList>
-            {/* {mappedData[key].value.map((ad) => (
-                <Ad key={ad.id} ad={ad} showAd={showAd} />
-      ))} */}
           </div>
         ))
       ) : (

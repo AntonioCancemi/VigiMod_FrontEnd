@@ -13,6 +13,7 @@ const AdList = ({ ads, show }) => {
   useEffect(() => {
     console.log(adId ? "getByID" : "getAll");
     show ? setShowAd(true) : setShowAd(false);
+    //built with out ads
     if (ads == null) {
       getAd(adId, config)
         .then((response) => {
@@ -23,6 +24,8 @@ const AdList = ({ ads, show }) => {
           console.error(error);
         });
     } else {
+      //built with ads
+      console.log(ads);
       setData(ads);
     }
     console.log(data);
