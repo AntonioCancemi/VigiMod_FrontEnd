@@ -17,10 +17,8 @@ const DropDownAction = ({ options, onSelect }) => {
   };
 
   const handleOptionSelect = (option) => {
-    setSelectedOption(option);
+    console.log("ciao");
     onSelect(option);
-    dropdownRef.current.focus();
-    dropdownRef.current.click();
   };
 
   return (

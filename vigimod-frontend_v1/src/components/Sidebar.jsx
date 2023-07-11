@@ -9,22 +9,9 @@ const Sidebar = () => {
   return (
     <Col lg={2} className="px-0 align-self-start sticky-top">
       <Container className="sidebar   fs-4 bg-secondary d-flex justify-content-between flex-column ">
-        {/* TbLayoutSidebarLeftExpand; */}
-
         <div>
           <br />
           <br />
-          {/* <Row>
-            <Col xs={"auto"} className="text-start">
-              <div variant="dark" onClick={toggleSidebar}>
-                {expanded ? (
-                  <TbLayoutSidebarLeftExpand />
-                ) : (
-                  <TbLayoutSidebarRightExpand />
-                )}
-              </div>
-            </Col>
-          </Row> */}
           <Row>
             <Col xs={"auto"}>
               <div>

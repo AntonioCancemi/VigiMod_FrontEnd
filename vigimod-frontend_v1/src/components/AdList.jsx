@@ -4,42 +4,51 @@ import { useParams } from "react-router-dom";
 import { getAd } from "../axios/service/adService";
 import Ad from "./Ad";
 import { Col, Container } from "react-bootstrap";
+import { PENDING } from "../OptionRej";
+import { useDispatch, useSelector } from "react-redux";
+import { setAd } from "../redux/actions/AdsAction";
 
-const AdList = ({ ads, show }) => {
-  const { config } = useContext(AuthContext);
+const AdList = ({ show }) => {
+  const ads = useSelector((state) => state.content.adsToShow);
   const { adId } = useParams();
-  const [data, setData] = useState();
+  console.log(ads);
+  //large or small
   const [showAd, setShowAd] = useState();
   useEffect(() => {
-    console.log(adId ? "getByID" : "getAll");
     show ? setShowAd(true) : setShowAd(false);
     //built with out ads
-    if (ads == null) {
-      getAd(adId, config)
-        .then((response) => {
-          console.log(response.data);
-          setData([response.data]);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    } else {
-      //built with ads
-      console.log(ads);
-      setData(ads);
-    }
-    console.log(data);
-  }, [adId]);
+    console.log(adId ? adId : "no Ad id");
+    // if (ads == null || adId) {
+    //   getAd(adId, config)
+    //     .then((response) => {
+    //       // console.log(response.data);
+    //       dispatch(setAd([response.data]));
+    //     })
+    //     .catch((error) => {
+    //       console.error(error);
+    //     });
+    // } else {
+    //built with ads
+    // }
+    // console.log(ads);
+    // console.log(ad);
+  }, []);
+
   return (
     <>
-      {" "}
-      <Col lg={"auto"} className="mt-5">
-        <Container fluid>
-          {data?.map((ad) => (
-            <Ad ad={ad} showAd={showAd}></Ad>
-          ))}
-        </Container>
-      </Col>
+      {ads ? (
+        <Col lg={"auto"} className="mt-5">
+          <Container fluid>
+            {ads ? (
+              ads.map((ad) => <Ad ad={ad} showAd={showAd} />)
+            ) : (
+              <Ad ad={null} showAd={showAd} />
+            )}
+          </Container>
+        </Col>
+      ) : (
+        <>no content ads</>
+      )}
     </>
   );
 };

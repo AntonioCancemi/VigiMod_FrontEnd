@@ -2,32 +2,20 @@ import React, { useContext, useEffect, useState } from "react";
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import ImageZoomModal from "./ImageZoomModal";
 import DropDownAction from "./actionComponents/DropDownAction";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getAd, updateAd } from "../axios/service/adService";
 import { AuthContext } from "../auth/AuthProvider";
-import { REJECTED } from "../OptionRej";
+import { ACCEPTED, PENDING, REJECTED } from "../OptionRej";
+import SellerInfo from "./SellerInfo";
+import ActionOnAd from "./actionComponents/ActionOnAd";
 
 const Ad = ({ ad, showAd }) => {
-  console.log(ad);
-  const { config } = useContext(AuthContext);
-  const [selectedOptionRej, setSelectedOptionRej] = useState("");
-  const { adId } = useParams();
+  // console.log(ad);
   const { product } = ad;
   const { seller } = product;
-  const handleOptionSelect = (option) => {
-    setSelectedOptionRej(option);
-    const adUpdate = ad;
-    adUpdate.adStatus = REJECTED;
-    console.log(JSON.stringify(adUpdate));
-    updateAd(adId, JSON.stringify(adUpdate), config)
-      .then((response) => console.log(response.fata))
-      .catch((error) => {
-        console.error(error);
-      });
-  };
 
   return (
-    <Row className=" border text-start mb-4">
+    <Row className=" border  border-3 border-dark text-start mb-4 p-2 ">
       {showAd ? (
         <>
           <Col lg={"auto"}>
@@ -65,7 +53,9 @@ const Ad = ({ ad, showAd }) => {
                     "https://cutewallpaper.org/24/image-placeholder-png/image-placeholder-svg-png-icon-free-download-148071-onlinewebfontscom.png",
                   ]}
                 />
+                <Row></Row>
               </Col>
+              <Col></Col>
             </Row>
             <Row className=" border">
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque,
@@ -79,35 +69,12 @@ const Ad = ({ ad, showAd }) => {
             </Row>
           </Col>
           <Col>
-            <Row className=" border">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque,
-              totam. Ratione, iusto. Cumque quibusdam aliquid consectetur
-              eligendi adipisci explicabo tenetur est, amet pariatur corrupti
-              itaque quam, consequatur ad officiis aperiam.
-            </Row>
             {/* action */}
-            <Row>
-              <div
-                className="d-flex
-          "
-              >
-                {ad?.adStatus == "PENDING" ? (
-                  <>
-                    <DropDownAction
-                      options={["Option 1", "Option 2", "Option 3", "Option 4"]}
-                      onSelect={handleOptionSelect}
-                    />
-                    <Button variant="success">ACCEPT</Button>
-                  </>
-                ) : (
-                  <></>
-                )}
-              </div>
-            </Row>
+            <ActionOnAd ad={ad} />
           </Col>
         </>
       ) : (
-        <Row>
+        <>
           <Col>
             <Link to={`/ad/${ad?.id}`}>ID AD: {ad?.id}</Link>
           </Col>
@@ -117,7 +84,7 @@ const Ad = ({ ad, showAd }) => {
           <Col>status: {ad?.adStatus}</Col>
           <Col>{product?.title}</Col>
           <Col> date: {ad?.publicationDate.slice(0, 10)}</Col>
-        </Row>
+        </>
       )}
     </Row>
   );

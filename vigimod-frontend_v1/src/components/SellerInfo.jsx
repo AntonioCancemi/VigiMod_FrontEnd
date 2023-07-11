@@ -4,18 +4,22 @@ import { AuthContext } from "../auth/AuthProvider";
 import { Col, Image, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
-const SellerInfo = (sellerId) => {
+const SellerInfo = (seller) => {
+  console.log(seller);
   const { config } = useContext(AuthContext);
-  const [seller, setSeller] = useState();
-  useEffect(() => {
-    getSeller(sellerId, config)
-      .then((response) => {
-        setSeller(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [sellerId]);
+  // const [seller, setSeller] = useState();
+  // useEffect(() => {
+  //   console.log(sellerId);
+  //   if (sellerId) {
+  //     getSeller({ sellerId }, config)
+  //       .then((response) => {
+  //         setSeller(response.data);
+  //       })
+  //       .catch((error) => {
+  //         console.error(error);
+  //       });
+  //   }
+  // }, []);
   return (
     <Row>
       <Col md={4} className="seller-image-col">

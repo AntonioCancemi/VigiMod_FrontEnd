@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Form, Button, Card, Container, Col } from "react-bootstrap";
+import { Form, Button, Card, Container, Col, Row } from "react-bootstrap";
 import axios from "axios";
 import { AuthContext } from "../auth/AuthProvider";
 
@@ -53,39 +53,43 @@ const LoginPage = () => {
   return (
     <Col lg={"auto"}>
       <Container
-        className="d-flex align-items-center justify-content-center"
+        className="d-flex align-items-center"
         style={{ minHeight: "100vh" }}
       >
-        <Card className="p-4 shadow">
-          <Card.Body>
-            <Card.Title>Login</Card.Title>
-            <Form onSubmit={handleSubmit}>
-              <Form.Group controlId="username">
-                <Form.Label>Username</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="username"
-                  value={credentials.username}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-              <Form.Group controlId="password">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="password"
-                  value={credentials.password}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-              <Button variant="primary" type="submit">
-                Accedi
-              </Button>
-            </Form>
-          </Card.Body>
-        </Card>
+        <Row className=" justify-content-center ">
+          <Card className="p-4 shadow">
+            <Card.Body>
+              <Card.Title>Login</Card.Title>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group controlId="username">
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="username"
+                    value={credentials.username}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group controlId="password">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    name="password"
+                    value={credentials.password}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+                <div className="d-flex justify-content-center mt-3">
+                  <Button variant="primary" type="submit">
+                    Accedi
+                  </Button>
+                </div>
+              </Form>
+            </Card.Body>
+          </Card>
+        </Row>
       </Container>
     </Col>
   );
