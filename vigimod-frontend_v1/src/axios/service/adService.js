@@ -1,9 +1,11 @@
-import { setAds } from "../../redux/actions/AdsAction";
 import api from "../config/api";
 // Interceptor per le richieste
 
 export const getAds = (config = {}) => {
   return api.get("/ad", config);
+};
+export const getAdsCount = (config = {}) => {
+  return api.get("/ad/count", config);
 };
 export const getAdsForDashboard = (config = {}) => {
   return api.get("/ad/dashboard", config);

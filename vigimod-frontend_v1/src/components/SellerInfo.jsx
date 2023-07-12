@@ -1,25 +1,8 @@
-import { useContext, useEffect, useState } from "react";
-import { getSeller } from "../axios/service/sellerService";
-import { AuthContext } from "../auth/AuthProvider";
 import { Col, Image, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
 
-const SellerInfo = (seller) => {
-  console.log(seller);
-  const { config } = useContext(AuthContext);
-  // const [seller, setSeller] = useState();
-  // useEffect(() => {
-  //   console.log(sellerId);
-  //   if (sellerId) {
-  //     getSeller({ sellerId }, config)
-  //       .then((response) => {
-  //         setSeller(response.data);
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //       });
-  //   }
-  // }, []);
+const SellerInfo = ({ seller }) => {
+  // console.log(seller);
+
   return (
     <Row>
       <Col md={4} className="seller-image-col">
@@ -31,11 +14,19 @@ const SellerInfo = (seller) => {
           className="seller-image"
         />
       </Col>
-      <Col md={8}>
+      <Col md={8} className="d-flex">
         <div className="seller-info">
           <h2>{seller?.fullName}</h2>
           <p>
             <strong>Username:</strong> {seller?.username}
+          </p>
+          <p>
+            <strong>Email:</strong> {seller?.email}
+          </p>
+        </div>
+        <div className="seller-info">
+          <p>
+            <strong>id:</strong> {seller?.id}
           </p>
           <p>
             <strong>Email:</strong> {seller?.email}

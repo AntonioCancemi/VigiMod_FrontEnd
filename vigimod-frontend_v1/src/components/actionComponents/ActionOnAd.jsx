@@ -4,21 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { ACCEPTED, PENDING, REJECTED } from "../../OptionRej";
 import { AuthContext } from "../../auth/AuthProvider";
 import { useContext } from "react";
-import {
-  getAd,
-  getAds,
-  getAdsBySeller,
-  updateAd,
-} from "../../axios/service/adService";
+
 import { useDispatch, useSelector } from "react-redux";
-import { increaseIndex } from "../../redux/actions/AdsAction";
+import { updateAd } from "../../axios/service/adService";
+import { fetchAdsForDashboard } from "../../redux/actions/adAction";
 
 const ActionOnAd = ({ ad }) => {
-  // console.log(ad);
-
-  const index = useSelector((state) => state.content.index);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { config } = useContext(AuthContext);
   const currentDateTime = new Date();
   const handleOptionSelect = (option) => {
@@ -33,21 +26,23 @@ const ActionOnAd = ({ ad }) => {
     updateAdfunction(PENDING, "in queue for update");
   };
   function updateAdfunction(status, option) {
-    console.log("function");
     const updatedAd = {
       ...ad,
       adStatus: status,
       motivation: option,
       lastUpdateAt: currentDateTime.toISOString(),
     };
+    console.log("function:update AD to:", updatedAd);
     updateAd(updatedAd.id, JSON.stringify(updatedAd), config)
       .then((response) => {
         console.log(response.status);
       })
+      .then(() => dispatch(fetchAdsForDashboard(config)))
       .catch((error) => {
         console.error(error);
       });
-    dispatch(increaseIndex());
+
+    console.log("update");
   }
   return (
     <Row className="text-center">
@@ -68,9 +63,6 @@ const ActionOnAd = ({ ad }) => {
         ) : (
           <Button onClick={handleUpdateStatusClick}>UPDATE STATUS</Button>
         )}
-        <Button onClick={() => dispatch(increaseIndex())}>
-          increase index:{index}
-        </Button>
       </div>
     </Row>
   );

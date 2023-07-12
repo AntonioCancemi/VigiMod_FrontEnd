@@ -1,18 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Button, Card, Col, Form, Row } from "react-bootstrap";
+import React from "react";
+import { Col, Row } from "react-bootstrap";
 import ImageZoomModal from "./ImageZoomModal";
-import DropDownAction from "./actionComponents/DropDownAction";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { getAd, updateAd } from "../axios/service/adService";
-import { AuthContext } from "../auth/AuthProvider";
-import { ACCEPTED, PENDING, REJECTED } from "../OptionRej";
-import SellerInfo from "./SellerInfo";
+import { Link } from "react-router-dom";
+
 import ActionOnAd from "./actionComponents/ActionOnAd";
 
 const Ad = ({ ad, showAd }) => {
-  // console.log(ad);
   const { product } = ad;
   const { seller } = product;
+  // console.log(ad);
 
   return (
     <Row className=" border  border-3 border-dark text-start mb-4 p-2 ">
