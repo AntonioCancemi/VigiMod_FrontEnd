@@ -9,7 +9,6 @@ export const AuthProvider = ({ children }) => {
   });
 
   const login = (data) => {
-    //username token,tol=kent
     setAuthData(data);
     setConfig({
       headers: {

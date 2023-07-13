@@ -7,13 +7,19 @@ import { useContext } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { updateAd } from "../../axios/service/adService";
-import { fetchAdsForDashboard } from "../../redux/actions/adAction";
+import {
+  fetchAdsBySeller,
+  fetchAdsForDashboard,
+} from "../../redux/actions/ad.GetDashboard";
+import { fetchAdById } from "../../redux/actions/searchbar.actions";
 
 const ActionOnAd = ({ ad }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { config } = useContext(AuthContext);
+  const adId = useSelector((state) => state.search.ad.adId);
+  const { authData, config } = useContext(AuthContext);
   const currentDateTime = new Date();
+
   const handleOptionSelect = (option) => {
     updateAdfunction(REJECTED, option);
   };
@@ -26,23 +32,32 @@ const ActionOnAd = ({ ad }) => {
     updateAdfunction(PENDING, "in queue for update");
   };
   function updateAdfunction(status, option) {
+    //object copy
+    if (!authData) {
+      navigate("/login");
+    }
     const updatedAd = {
       ...ad,
       adStatus: status,
       motivation: option,
+      //object mutation
       lastUpdateAt: currentDateTime.toISOString(),
     };
-    console.log("function:update AD to:", updatedAd);
+    //console.log("function:update AD to:", updatedAd);
+    //POST
     updateAd(updatedAd.id, JSON.stringify(updatedAd), config)
       .then((response) => {
         console.log(response.status);
       })
-      .then(() => dispatch(fetchAdsForDashboard(config)))
+      //PUT DATA INTO STORE.content.pendingAds
+      .then(() =>
+        adId
+          ? dispatch(fetchAdById(adId, config))
+          : dispatch(fetchAdsForDashboard(config))
+      )
       .catch((error) => {
         console.error(error);
       });
-
-    console.log("update");
   }
   return (
     <Row className="text-center">

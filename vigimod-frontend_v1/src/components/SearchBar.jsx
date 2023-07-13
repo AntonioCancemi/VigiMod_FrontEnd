@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Form, FormControl, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { setAdId } from "../redux/actions/searchbar.actions";
 
 function SearchBar() {
   const navigate = useNavigate();
-  const [query, setQuery] = useState("");
+  const dispatch = useDispatch();
+  const adId = useSelector((state) => state.search.ad.adId);
+  const [query, setQuery] = useState();
 
-  const handleInputChange = (event) => {
-    setQuery(event.target.value);
+  const handleInputChange = (e) => {
+    setQuery(e.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(setAdId(query));
     setQuery("");
-    navigate(`/ad/${query}`);
+    navigate(`/ad`);
   };
   useEffect(() => {});
   return (

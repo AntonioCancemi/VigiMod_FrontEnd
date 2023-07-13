@@ -25,7 +25,7 @@ function App() {
               <Route path="/*" element={<NotFound />} />
               <Route path="/search/:id" element={<SearchPage />} />
               <Route path="/seller/:sellerId" element={<SellerPage />} />
-              <Route path="/ad/:adId" element={<AdPage />} />
+              <Route path="/ad" element={<AdPage />} />
               <Route path="/home" element={<Homepage />} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/login" element={<LoginPage />} />

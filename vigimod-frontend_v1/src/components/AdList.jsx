@@ -1,16 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../auth/AuthProvider";
-import { useParams } from "react-router-dom";
-import { getAd } from "../axios/service/adService";
+import { useEffect, useState } from "react";
+
 import Ad from "./Ad";
 import { Col, Container } from "react-bootstrap";
-import { PENDING } from "../OptionRej";
-import { useDispatch, useSelector } from "react-redux";
-import { setAd } from "../redux/actions/AdsAction";
 
 const AdList = ({ ads, show }) => {
-  console.log(ads);
   //large or small
+  // console.log(ads);
   const [showAd, setShowAd] = useState();
   useEffect(() => {
     show ? setShowAd(true) : setShowAd(false);
@@ -22,11 +17,9 @@ const AdList = ({ ads, show }) => {
       {ads ? (
         <Col lg={"auto"} className="mt-5">
           <Container fluid>
-            {ads ? (
-              ads.map((ad) => <Ad key={ad?.id} ad={ad} showAd={showAd} />)
-            ) : (
-              <Ad ad={null} showAd={showAd} />
-            )}
+            {ads.map((ad) => (
+              <Ad key={ad?.id} ad={ad} showAd={showAd} />
+            ))}
           </Container>
         </Col>
       ) : (

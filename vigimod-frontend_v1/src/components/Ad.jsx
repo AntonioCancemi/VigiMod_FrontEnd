@@ -7,7 +7,8 @@ import ActionOnAd from "./actionComponents/ActionOnAd";
 
 const Ad = ({ ad, showAd }) => {
   const { product } = ad;
-  const { seller } = product;
+  const { seller } = ad;
+  // const { seller } = product;
   // console.log(ad);
 
   return (

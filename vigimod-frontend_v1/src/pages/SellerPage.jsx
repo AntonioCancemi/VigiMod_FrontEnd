@@ -1,14 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Container, Row, Col, Image } from "react-bootstrap";
-import { getSeller } from "../axios/service/sellerService";
+import { Container, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../auth/AuthProvider";
 import { getAdsBySeller } from "../axios/service/adService";
-import Ad from "../components/Ad";
 import SellerInfo from "../components/SellerInfo";
 import AdList from "../components/AdList";
 import { useDispatch, useSelector } from "react-redux";
-import { setAdsToShow } from "../redux/actions/AdsAction";
 
 const SellerPage = () => {
   const { config } = useContext(AuthContext);

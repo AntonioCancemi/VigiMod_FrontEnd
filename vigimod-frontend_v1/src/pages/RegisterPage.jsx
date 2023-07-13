@@ -1,13 +1,9 @@
 import React, { useContext, useState } from "react";
 import { Form, Button, Card, Container, Row, Col } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import { registerPostDTO } from "../axios/service/authService";
 import { AuthContext } from "../auth/AuthProvider";
 const RegisterPage = () => {
-  const navigate = useNavigate();
   const { config } = useContext(AuthContext);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [data, setData] = useState(false);
   const [user, setUser] = useState({
     name: "",
@@ -26,8 +22,6 @@ const RegisterPage = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError(null);
 
     registerPostDTO(user, config)
       .then((response) => {
@@ -35,8 +29,7 @@ const RegisterPage = () => {
       })
       .catch((error) => {
         console.error(error);
-      })
-      .finally(setLoading(false));
+      });
   };
 
   return (
