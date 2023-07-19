@@ -29,7 +29,7 @@ const AdDashboard = () => {
   }, [authData]);
   //2)fetch all ads for current seller
   useEffect(() => {
-    if (authData && pendingAds[0]?.key) {
+    if (authData) {
       dispatch(fetchAdsBySeller(pendingAds[0]?.key, config));
       setKey("queue");
     }
@@ -41,16 +41,19 @@ const AdDashboard = () => {
           <Row>
             <Col>
               <Row>
-                <SellerInfo seller={pendingAds[0]?.value[0]?.product?.seller} />
-              </Row>
-              <Row>
+                <div className="sticky-top">
+                  <SellerInfo
+                    seller={pendingAds[0]?.value[0]?.product?.seller}
+                  />
+                </div>
+
                 <Tabs
                   id="controlled-tab-example"
                   activeKey={key}
                   onSelect={(k) => setKey(k)}
-                  className="mb-3"
+                  className="mb-3 trasparent "
                 >
-                  <Tab eventKey="queue" title="Queue">
+                  <Tab eventKey="queue" title="Queue" className="text-light">
                     <AdList
                       ads={allAds?.filter((ad) => ad.adStatus === PENDING)}
                       show={true}
@@ -69,7 +72,7 @@ const AdDashboard = () => {
                     />
                   </Tab>
                   <Tab eventKey="all" title="All ads">
-                    <AdList ads={allAds} show={true} />
+                    <AdList ads={allAds} show={false} />
                   </Tab>
                 </Tabs>
               </Row>

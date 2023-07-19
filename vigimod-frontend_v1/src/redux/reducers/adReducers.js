@@ -43,7 +43,6 @@ const adReducer = (state = initialState, action) => {
         error: action.payload,
       };
     case FETCH_ADS_COUNT:
-      console.log(action.payload);
       return {
         ...state,
         adsCount: action.payload,

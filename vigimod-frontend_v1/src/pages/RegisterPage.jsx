@@ -25,6 +25,7 @@ const RegisterPage = () => {
 
     registerPostDTO(user, config)
       .then((response) => {
+        console.log(response.status);
         setData(response.data);
       })
       .catch((error) => {

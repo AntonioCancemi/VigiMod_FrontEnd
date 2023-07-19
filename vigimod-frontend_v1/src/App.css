@@ -1,4 +1,6 @@
+.main-col{background-color: #003264;}
 /* notification */
+
 .notification-container {
   position: fixed;
   top: 50%;
@@ -21,10 +23,6 @@
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
-/* sidebar */
-.sidebar{
-  height: 100vh;
-}
 /* seller page */
 .seller-image-col {
   display: flex;
@@ -40,8 +38,60 @@
 }
 
 .seller-info {
+  background-color: #00366b;
+  padding: 20px;
+}
+.seller-info span{ color:white ;}
+/* ad list container */
+.ad-list-container {
+  overflow-y: scroll;
+  max-height: 700px;
+}
+.footer {
   background-color: #f8f8f8;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+}
+/* side bar */
+
+.sidebar{
+  height: 100vh;
+  background-color: #001f3f;
+}
+.link-s{color: #50c878 !important;width:auto;}
+.link-s:hover{color: #65fc97 !important;}
+.link-s-box:hover{background-color: #003264;}
+/* dashboard */
+.ad-dashboard-container{
+  
+  background-color: #003264;
+}
+.no-scroll-container{overflow-y: hidden;}
+
+/* seller */
+.seller-i-container{background-color:#001f3f ;color: #50c878;}
+/* no scroll bar */
+::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  /* Colore sfondo della track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  /* Colore del thumb (l'indicatore dello scorrimento) */
+}
+/* tabs queue,pe */
+.trasparent{background-color: #001f3f;}
+.trasparent>li>button{color:white ;font-weight: bolder}
+.trasparent>li>button:hover{color:#89ffb1 !important;font-weight: bolder;}
+/* ad */
+.ad-container{
+  background-color: white;
+  color: black;border:solid #001f3f 5px;
 }

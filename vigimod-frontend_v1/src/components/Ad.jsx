@@ -1,84 +1,153 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+import { Badge, Col, Row, Table } from "react-bootstrap";
 import ImageZoomModal from "./ImageZoomModal";
 import { Link } from "react-router-dom";
 
 import ActionOnAd from "./actionComponents/ActionOnAd";
+import { ACCEPTED, PENDING, REJECTED, SUSPECTED } from "../OptionRej";
+import { useDispatch } from "react-redux";
+import { SET_AD_ID, setAdId } from "../redux/actions/searchbar.actions";
 
 const Ad = ({ ad, showAd }) => {
+  const dispatch = useDispatch();
   const { product } = ad;
-  const { seller } = ad;
-  // const { seller } = product;
-  // console.log(ad);
+  const { seller } = ad.product;
+  var badgeStatusColor = "";
+  switch (ad?.adStatus) {
+    case PENDING:
+      badgeStatusColor = "warning";
+      break;
+    case ACCEPTED:
+      badgeStatusColor = "success";
+      break;
+    case REJECTED:
+      badgeStatusColor = "danger";
+      break;
+    case SUSPECTED:
+      badgeStatusColor = "dark";
+      break;
+    default:
+      break;
+  }
 
   return (
-    <Row className=" border  border-3 border-dark text-start mb-4 p-2 ">
+    <Row className="ad-container rounded text-start mb-4 p-2 fs-5 ">
       {showAd ? (
         <>
           <Col lg={"auto"}>
-            <Row>AD info</Row>
-            <Row>
-              <Col className=" border">ID AD: {ad?.id}</Col>
-              <Col className=" border">status: {ad?.adStatus}</Col>
-              <Col className=" border">
-                date: {ad?.publicationDate.slice(0, 10)}
-              </Col>
-            </Row>
-            <Row>Seller info</Row>
-            <Row>
-              <Col className=" border">
-                <Link to={`/seller/${seller?.id}`}>
-                  ID seller: {seller?.id}
-                </Link>
-              </Col>
-              <Col className=" border">seller Type: {seller?.sellerType}</Col>
-              <Col className=" border">Tel: {seller?.phoneNumber}</Col>
-            </Row>
-            <Row>
-              <Col className=" border">username: {seller?.username}</Col>
-              <Col className=" border">fullname: {seller?.fullName}</Col>
-              <Col className=" border">email: {seller?.email}</Col>
-            </Row>
-            <Row>Product info</Row>
-            <Row className="my-2 ms-3 fw-bold fs-3">{product?.title}</Row>
-            <Row>
-              <Col className="ad-Img-Container mt-3">
-                <ImageZoomModal
-                  images={[
-                    "https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg",
-                    "https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg",
-                    "https://cutewallpaper.org/24/image-placeholder-png/image-placeholder-svg-png-icon-free-download-148071-onlinewebfontscom.png",
-                  ]}
-                />
-                <Row></Row>
-              </Col>
-              <Col></Col>
-            </Row>
-            <Row className=" border">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque,
-              totam. Ratione, iusto. Cumque quibusdam aliquid consectetur
-              eligendi adipisci explicabo tenetur est, amet pariatur corrupti
-              itaque quam, consequatur ad officiis aperiam. Lorem ipsum dolor
-              sit amet consectetur adipisicing elit. Incidunt magni impedit
-              magnam, eum veritatis ipsam? Animi sequi quos enim, laborum
-              cupiditate dolor, maxime placeat, eveniet veniam vel expedita
-              aspernatur rem?
-            </Row>
-          </Col>
-          <Col>
-            {/* action */}
             <ActionOnAd ad={ad} />
+          </Col>
+          <Col lg={5}>
+            <Row className="border border-top-0 mb-3">
+              <div className="">
+                <strong>Ad status: </strong>
+                <Badge pill bg={badgeStatusColor} className="fs-4">
+                  {ad?.adStatus}
+                </Badge>
+              </div>
+              <div className="">
+                <strong>Title: </strong>
+                <span className="fs-4">{product?.title}</span>
+              </div>
+            </Row>
+            <Row className="justify-content-start">
+              <ImageZoomModal
+                images={[
+                  "https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg",
+                  "https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg",
+                  "https://cutewallpaper.org/24/image-placeholder-png/image-placeholder-svg-png-icon-free-download-148071-onlinewebfontscom.png",
+                ]}
+              />
+            </Row>
+            <Row className=" border py-2 justify-content-end">
+              <Col lg={"auto"} className="d-flex align-items-center">
+                <span>{ad?.location} </span>
+              </Col>
+              <Col lg={"auto"}>
+                <Badge pill bg="dark" className="fs-4">
+                  {product?.price} €
+                </Badge>
+              </Col>
+            </Row>
+            <Row>{product.description}</Row>
+          </Col>
+          <Col lg={"auto"} className="">
+            <Table striped bordered hover>
+              <thead>
+                <th colSpan={3} className="text-center">
+                  Product info
+                </th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ProductID: </td>
+                  <td>{product?.id}</td>
+                </tr>
+                <tr>
+                  <td>Category: </td>
+                  <td>{product?.category}</td>
+                </tr>
+                <tr>
+                  <td>Brand: </td>
+                  <td> {product?.brand}</td>
+                </tr>
+                <tr>
+                  <td>Stock:</td>
+                  <td>{product?.stock}</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td colSpan={2}>Larry the Bird</td>
+                </tr>
+              </tbody>
+            </Table>
+          </Col>
+          <Col lg={"auto"} className="">
+            <Table striped bordered hover>
+              <thead>
+                <th colSpan={3} className="text-center">
+                  Ad info
+                </th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>AdID: </td>
+                  <td>{ad?.id}</td>
+                </tr>
+                <tr>
+                  <td>publication date: </td>
+                  <td>{ad?.publicationDate.slice(0, 10)}</td>
+                </tr>
+                <tr>
+                  <td>Brand: </td>
+                  <td> {}</td>
+                </tr>
+                <tr>
+                  <td>Stock:</td>
+                  <td>{ad?.stock}</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td colSpan={2}>Larry the Bird</td>
+                </tr>
+              </tbody>
+            </Table>
           </Col>
         </>
       ) : (
         <>
           <Col>
-            <Link to={`/ad/${ad?.id}`}>ID AD: {ad?.id}</Link>
+            <Link to={`/ad`} onClick={() => dispatch(setAdId(ad?.id))}>
+              ID AD: {ad?.id}
+            </Link>
           </Col>
+
           <Col>
-            <Link to={`/seller/${seller?.id}`}>ID seller: {seller?.id}</Link>
+            status:
+            <Badge pill bg={badgeStatusColor}>
+              {ad?.adStatus}
+            </Badge>
           </Col>
-          <Col>status: {ad?.adStatus}</Col>
           <Col>{product?.title}</Col>
           <Col> date: {ad?.publicationDate.slice(0, 10)}</Col>
         </>

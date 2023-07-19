@@ -1,35 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Container, Row, Col, Tabs, Tab } from "react-bootstrap";
-import AdDashboard from "../components/AdDashborad";
-import { AuthContext } from "../auth/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { Col, Container, Row } from "react-bootstrap";
 
-const Homepage = () => {
-  const navigate = useNavigate();
-  const { authData } = useContext(AuthContext);
-  useEffect(() => {
-    if (!authData) {
-      navigate("/login");
-    }
-  });
+function HomePage() {
   return (
-    <Col lg={"10"}>
+    <Col lg={10} className="mt-5">
       <Container fluid>
-        <Row>
-          {/* <MyComponent></MyComponent> */}
-          <Col lg={"auto"} className="px-0 align-self-start sticky-top"></Col>
-          <Col className="mx-3 mt-5">
-            <br />
-            <AdDashboard />
-
-            {/* {ads?.map((ad) => (
-              <Ad key={ad.id} ad={ad} />
-            ))} */}
-          </Col>
+        <Row className="justify-content-center">
+          <Col className="text-center">WELCOME IN VIGIMOD</Col>
         </Row>
       </Container>
     </Col>
   );
-};
+}
 
-export default Homepage;
+export default HomePage;

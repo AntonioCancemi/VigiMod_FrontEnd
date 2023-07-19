@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Col, Container, Row, Badge } from "react-bootstrap";
 import { BsSearch } from "react-icons/bs";
-import { BiSpreadsheet } from "react-icons/bi";
+import { BiSolidUserAccount, BiSpreadsheet } from "react-icons/bi";
 import { RiVipDiamondLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
@@ -13,43 +13,52 @@ const Sidebar = () => {
   const pendingAds = useSelector((state) => state.content.pendingAds);
   const { authData, config } = useContext(AuthContext);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
+  const year = new Date().getFullYear(); // Ottieni l'anno corrente
   useEffect(() => {
     authData
       ? setInterval(dispatch(fetchAdsCount(config)), 5000)
-      : navigate("/login");
+      : console.log("");
   }, [authData, pendingAds]);
   return (
     <>
       {authData ? (
         <Col lg={2} className="px-0 align-self-start sticky-top">
-          <Container className="sidebar   fs-4 bg-secondary d-flex justify-content-between flex-column ">
+          <Container className="sidebar   fs-3  d-flex justify-content-between flex-column ">
             <div>
               <br />
+              <Row className=" text-center">
+                <Link className="fs-1 link-s text-decoration-none">
+                  VIGIMOD
+                </Link>
+              </Row>
               <br />
               <Row>
-                <Col xs={"auto"}>
+                <Col>
                   <div>
-                    <BsSearch />
                     <SearchBar />
                   </div>
                 </Col>
               </Row>
               <Row>
-                <Col xs={"auto"}>
-                  <Link to={"/home"}>
+                <Col className="link-s-box">
+                  <Link
+                    to={"/dashboard"}
+                    className="d-block link-s text-decoration-none d-flex align-items-center"
+                  >
                     <BiSpreadsheet />
-                    ADS{" "}
-                    <Badge pill bg="danger">
+                    ADS...
+                    <Badge pill bg="danger" className="fs-6">
                       {adsCount}
                     </Badge>
                   </Link>
                 </Col>
               </Row>
               <Row>
-                <Col xs={"auto"}>
-                  <Link to={"/pro"}>
+                <Col className="link-s-box">
+                  <Link
+                    to={"/pro"}
+                    className="d-block link-s text-decoration-none"
+                  >
                     <RiVipDiamondLine />
                     PRO
                   </Link>
@@ -58,10 +67,20 @@ const Sidebar = () => {
             </div>
             <div>
               <Row>
-                <Col xs={"auto"}>
-                  <RiVipDiamondLine />
-                  PRO
+                <Col className="link-s-box mb-2 ">
+                  <Link
+                    to={"/myProfile"}
+                    className="link-s text-decoration-none"
+                  >
+                    <BiSolidUserAccount />
+                    Account
+                  </Link>
                 </Col>
+              </Row>
+              <Row>
+                <footer className="footer fs-6">
+                  <p>&copy;{year}AntonioCancemiVigiMod</p>
+                </footer>
               </Row>
             </div>
           </Container>

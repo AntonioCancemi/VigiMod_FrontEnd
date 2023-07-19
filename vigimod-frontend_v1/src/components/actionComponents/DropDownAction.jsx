@@ -1,5 +1,13 @@
 import React, { useState, useRef } from "react";
-import { Form, FormControl, Dropdown, ListGroup } from "react-bootstrap";
+import {
+  Form,
+  FormControl,
+  Dropdown,
+  ListGroup,
+  Button,
+  ButtonGroup,
+  DropdownButton,
+} from "react-bootstrap";
 
 const DropDownAction = ({ options, onSelect }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -25,7 +33,7 @@ const DropDownAction = ({ options, onSelect }) => {
     <Dropdown>
       <Dropdown.Toggle
         ref={dropdownRef}
-        variant="secondary"
+        variant="trasparent"
         id="dropdown-basic"
       >
         {selectedOption ? selectedOption : "REJECT"}

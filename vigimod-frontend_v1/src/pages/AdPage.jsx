@@ -22,7 +22,9 @@ const AdPage = () => {
       {!loading && !error ? (
         <Container fluid>
           <Row>
-            <SellerInfo seller={singleAd[0]?.product?.seller} />
+            <Col className="mt-5">
+              <SellerInfo seller={singleAd[0]?.product?.seller} />
+            </Col>
           </Row>
           <Row>
             <Col lg={"auto"} className="px-0 align-self-start sticky-top"></Col>

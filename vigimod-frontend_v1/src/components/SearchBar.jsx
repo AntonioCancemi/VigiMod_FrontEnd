@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Form, FormControl, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { setAdId } from "../redux/actions/searchbar.actions";
+import { BsSearch } from "react-icons/bs";
 
 function SearchBar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const adId = useSelector((state) => state.search.ad.adId);
   const [query, setQuery] = useState();
 
   const handleInputChange = (e) => {
@@ -18,6 +18,7 @@ function SearchBar() {
     e.preventDefault();
     dispatch(setAdId(query));
     setQuery("");
+    console.log("searching");
     navigate(`/ad`);
   };
   useEffect(() => {});
@@ -31,9 +32,9 @@ function SearchBar() {
           placeholder="Cerca..."
           className="mr-sm-2"
         />
-        <Button variant="outline-primary" type="submit">
-          Cerca
-        </Button>
+        {/* <Button variant="primary" type="submit">
+          <BsSearch />
+        </Button> */}
       </div>
     </Form>
   );

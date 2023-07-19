@@ -15,10 +15,10 @@ const AdList = ({ ads, show }) => {
   return (
     <>
       {ads ? (
-        <Col lg={"auto"} className="mt-5">
+        <Col className="mt-5 ad-list-container ">
           <Container fluid>
             {ads.map((ad) => (
-              <Ad key={ad?.id} ad={ad} showAd={showAd} />
+              <Ad ad={ad} showAd={showAd} />
             ))}
           </Container>
         </Col>

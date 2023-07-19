@@ -1,7 +1,7 @@
-import { Button, Row } from "react-bootstrap";
+import { Button, ButtonGroup, Row } from "react-bootstrap";
 import DropDownAction from "./DropDownAction";
 import { useNavigate } from "react-router-dom";
-import { ACCEPTED, PENDING, REJECTED } from "../../OptionRej";
+import { ACCEPTED, PENDING, REJECTED, SUSPECTED } from "../../OptionRej";
 import { AuthContext } from "../../auth/AuthProvider";
 import { useContext } from "react";
 
@@ -19,13 +19,17 @@ const ActionOnAd = ({ ad }) => {
   const adId = useSelector((state) => state.search.ad.adId);
   const { authData, config } = useContext(AuthContext);
   const currentDateTime = new Date();
-
+  const pathURLFinale = window.location.pathname;
+  console.log(pathURLFinale);
   const handleOptionSelect = (option) => {
     updateAdfunction(REJECTED, option);
   };
 
   const handleAcceptClick = () => {
     updateAdfunction(ACCEPTED, "accepted");
+  };
+  const handleSuspectedClick = () => {
+    updateAdfunction(SUSPECTED, "suspected");
   };
 
   const handleUpdateStatusClick = () => {
@@ -51,7 +55,7 @@ const ActionOnAd = ({ ad }) => {
       })
       //PUT DATA INTO STORE.content.pendingAds
       .then(() =>
-        adId
+        pathURLFinale == "/ad"
           ? dispatch(fetchAdById(adId, config))
           : dispatch(fetchAdsForDashboard(config))
       )
@@ -60,21 +64,34 @@ const ActionOnAd = ({ ad }) => {
       });
   }
   return (
-    <Row className="text-center">
+    <Row className="text-start">
       <div
-        className="d-flex justify-content-center
+        className="d-flex justify-content-start flex-colunm
           "
       >
         {ad?.adStatus === "PENDING" ? (
-          <>
-            <DropDownAction
-              options={["Option 1", "Option 2", "Option 3", "Option 4"]}
-              onSelect={handleOptionSelect}
-            />
-            <Button variant="success" onClick={handleAcceptClick}>
+          <ButtonGroup vertical>
+            <Button variant="danger" style={{ height: 50 }}>
+              <DropDownAction
+                options={["Option 1", "Option 2", "Option 3", "Option 4"]}
+                onSelect={handleOptionSelect}
+              />
+            </Button>
+            <Button
+              variant="success"
+              onClick={handleAcceptClick}
+              style={{ height: 50 }}
+            >
               ACCEPT
             </Button>
-          </>
+            <Button
+              variant="warning"
+              onClick={handleSuspectedClick}
+              style={{ height: 50 }}
+            >
+              SUSPECT
+            </Button>
+          </ButtonGroup>
         ) : (
           <Button onClick={handleUpdateStatusClick}>UPDATE STATUS</Button>
         )}

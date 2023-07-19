@@ -25,15 +25,12 @@ const LoginPage = () => {
     loginPostDTO(credentials)
       .then((response) => response.data)
       .then((data) => login(data))
+      .then(() => navigate("/home"))
       .catch((error) => {
         console.error(error);
       });
   };
-  useEffect(() => {
-    if (authData) {
-      navigate("/home");
-    }
-  }, [authData]);
+
   return (
     <Container
       fluid
