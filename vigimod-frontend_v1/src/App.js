@@ -1,4 +1,6 @@
 import "./App.css";
+import { Pie } from "react-chartjs-2";
+import Chart from "chart.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AuthContext, AuthProvider, useAuth } from "./auth/AuthProvider";
@@ -13,6 +15,7 @@ import SearchPage from "./pages/SearchPage";
 import { useContext } from "react";
 import DashboardPage from "./pages/DashboardPage";
 import HomePage from "./pages/HomePage";
+import MainDashboardPage from "./pages/MainDashboardPage";
 
 function App() {
   const { authData } = useContext(AuthContext);
@@ -29,6 +32,7 @@ function App() {
               <Route path="/ad" element={<AdPage />} />
               <Route path="/" element={<HomePage />} />
               <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/main-dashboard" element={<MainDashboardPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           ) : (

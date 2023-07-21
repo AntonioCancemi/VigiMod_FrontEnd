@@ -2,8 +2,9 @@ import React, { useContext, useState } from "react";
 import { Form, Button, Card, Container, Row, Col } from "react-bootstrap";
 import { registerPostDTO } from "../axios/service/authService";
 import { AuthContext } from "../auth/AuthProvider";
+import { useNavigate } from "react-router";
 const RegisterPage = () => {
-  const { config } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [data, setData] = useState(false);
   const [user, setUser] = useState({
     name: "",
@@ -11,7 +12,7 @@ const RegisterPage = () => {
     username: "",
     email: "",
     password: "",
-    roles: ["ADMIN"],
+    roles: ["MODERATOR"],
   });
 
   const handleChange = (e) => {
@@ -23,11 +24,12 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    registerPostDTO(user, config)
+    registerPostDTO(user)
       .then((response) => {
         console.log(response.status);
         setData(response.data);
       })
+      .then(() => navigate("/"))
       .catch((error) => {
         console.error(error);
       });

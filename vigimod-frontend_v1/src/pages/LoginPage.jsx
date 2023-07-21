@@ -1,6 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Form, Button, Card, Container, Col, Row } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Card,
+  Container,
+  Col,
+  Row,
+  ButtonGroup,
+} from "react-bootstrap";
 import { AuthContext } from "../auth/AuthProvider";
 import { loginPostDTO } from "../axios/service/authService";
 
@@ -63,7 +71,7 @@ const LoginPage = () => {
                       required
                     />
                   </Form.Group>
-                  <div className="d-flex justify-content-center mt-3">
+                  <div className="d-flex  justify-content-center mt-3">
                     <Button variant="primary" type="submit">
                       Accedi
                     </Button>

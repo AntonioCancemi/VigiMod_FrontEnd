@@ -5,11 +5,6 @@ import ProgressBarAds from "./PogressBarAds";
 
 const SellerInfo = ({ seller }) => {
   const sellerAds = useSelector((state) => state.content.allAdsByS);
-  //progres bar props
-  const sellerAdsPen = sellerAds?.filter((ad) => ad.adStatus === PENDING);
-  const sellerAdsRej = sellerAds?.filter((ad) => ad.adStatus === REJECTED);
-  const sellerAdsAcc = sellerAds?.filter((ad) => ad.adStatus === ACCEPTED);
-  const sellerAdsSus = sellerAds?.filter((ad) => ad.adStatus === SUSPECTED);
 
   return (
     <Row className="seller-i-container rounded p-3 ">
@@ -18,16 +13,18 @@ const SellerInfo = ({ seller }) => {
           {/* image */}
           <Col lg={2} clas>
             <Image
-              //src={seller?.image}
-              src="https://media.istockphoto.com/id/1327592506/vector/default-avatar-photo-placeholder-icon-grey-profile-picture-business-man.jpg?s=612x612&w=0&k=20&c=BpR0FVaEa5F24GIw7K8nMWiiGmbb8qmhfkpXcp1dhQg="
+              src={
+                // seller?.image
+                //   ? seller.image:
+                "https://media.istockphoto.com/id/1327592506/vector/default-avatar-photo-placeholder-icon-grey-profile-picture-business-man.jpg?s=612x612&w=0&k=20&c=BpR0FVaEa5F24GIw7K8nMWiiGmbb8qmhfkpXcp1dhQg="
+              }
               alt="Seller"
               fluid
               className="seller-image rounded-circle"
             />
           </Col>
           {/* other info */}
-
-          <Col lg={3} className="seller-info rounded-start ">
+          <Col className="seller-info rounded-start ">
             <div>
               <strong>ID:</strong> <span>{seller?.id}</span>
             </div>
@@ -38,24 +35,24 @@ const SellerInfo = ({ seller }) => {
               <span>{seller?.sellerType}</span>
             </div>
           </Col>
-          <Col lg={3} className="seller-info ">
+          <Col className="seller-info ">
             <div>
               <strong>Username:</strong>
               <br /> <span>{seller?.username}</span>
             </div>
             <div>
-              <strong>Fullname:</strong> <br />
+              <strong>Full name:</strong> <br />
               <span>{seller?.fullName}</span>
             </div>
           </Col>
-          <Col lg={"auto"} className="seller-info rounded-end">
+          <Col className="seller-info rounded-end">
             <div>
-              <strong>email:</strong>
+              <strong>Email:</strong>
               <br />
               <span>{seller?.email}</span>
             </div>
             <div>
-              <strong>Phone Number:</strong> <br />
+              <strong>Phone number:</strong> <br />
               <span>{seller?.phoneNumber}</span>
             </div>
           </Col>
@@ -64,11 +61,11 @@ const SellerInfo = ({ seller }) => {
       <Col lg={3} className="d-flex align-items-center">
         <div className="w-100">
           <ProgressBarAds
-            acc={sellerAdsAcc?.length}
-            rej={sellerAdsRej?.length}
-            pen={sellerAdsPen?.length}
+            acc={sellerAds?.filter((ad) => ad.adStatus === ACCEPTED).length}
+            rej={sellerAds?.filter((ad) => ad.adStatus === REJECTED).length}
+            pen={sellerAds?.filter((ad) => ad.adStatus === PENDING).length}
+            sus={sellerAds?.filter((ad) => ad.adStatus === SUSPECTED).length}
             all={sellerAds?.length}
-            sus={sellerAdsSus?.length}
           />
         </div>
       </Col>

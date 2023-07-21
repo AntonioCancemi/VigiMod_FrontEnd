@@ -8,8 +8,8 @@ export const getReport = (reportId) => {
   return api.get(`/report/${reportId}`);
 };
 
-export const createReport = (reportData) => {
-  return api.post("/report", reportData);
+export const createReport = (reportData, config = {}) => {
+  return api.post("/report", reportData, config);
 };
 
 export const updateReport = (reportId, reportData) => {

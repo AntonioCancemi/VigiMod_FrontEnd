@@ -1,5 +1,4 @@
 import {
-  getAd,
   getAdsBySeller,
   getAdsCount,
   getAdsForDashboard,

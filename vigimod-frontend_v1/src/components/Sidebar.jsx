@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Col, Container, Row, Badge } from "react-bootstrap";
-import { BsSearch } from "react-icons/bs";
-import { BiSolidUserAccount, BiSpreadsheet } from "react-icons/bi";
-import { RiVipDiamondLine } from "react-icons/ri";
-import { Link, useNavigate } from "react-router-dom";
+
+import { BiBarChart, BiSolidUserAccount, BiSpreadsheet } from "react-icons/bi";
+import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import { AuthContext } from "../auth/AuthProvider";
 import { useDispatch, useSelector } from "react-redux";
@@ -43,11 +42,13 @@ const Sidebar = () => {
                 <Col className="link-s-box">
                   <Link
                     to={"/dashboard"}
-                    className="d-block link-s text-decoration-none d-flex align-items-center"
+                    className="d-block link-s text-decoration-none d-flex align-items-center justify-content-between"
                   >
-                    <BiSpreadsheet />
-                    ADS...
-                    <Badge pill bg="danger" className="fs-6">
+                    <span>
+                      <BiSpreadsheet />
+                      ADS
+                    </span>
+                    <Badge pill bg="danger" className="fs-6 ms-3">
                       {adsCount}
                     </Badge>
                   </Link>
@@ -56,11 +57,11 @@ const Sidebar = () => {
               <Row>
                 <Col className="link-s-box">
                   <Link
-                    to={"/pro"}
-                    className="d-block link-s text-decoration-none"
+                    to={"/main-dashboard"}
+                    className="d-block link-s text-decoration-none d-flex align-items-center"
                   >
-                    <RiVipDiamondLine />
-                    PRO
+                    <BiBarChart />
+                    DATA
                   </Link>
                 </Col>
               </Row>

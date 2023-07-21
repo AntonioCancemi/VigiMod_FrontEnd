@@ -39,15 +39,14 @@ const Ad = ({ ad, showAd }) => {
           </Col>
           <Col lg={5}>
             <Row className="border border-top-0 mb-3">
-              <div className="">
+              {/* <div className="">
                 <strong>Ad status: </strong>
                 <Badge pill bg={badgeStatusColor} className="fs-4">
                   {ad?.adStatus}
                 </Badge>
-              </div>
+              </div> */}
               <div className="">
-                <strong>Title: </strong>
-                <span className="fs-4">{product?.title}</span>
+                <p className="fs-4">{product?.title}</p>
               </div>
             </Row>
             <Row className="justify-content-start">
@@ -59,9 +58,11 @@ const Ad = ({ ad, showAd }) => {
                 ]}
               />
             </Row>
-            <Row className=" border py-2 justify-content-end">
+            <Row className=" border py-2 justify-content-between">
               <Col lg={"auto"} className="d-flex align-items-center">
-                <span>{ad?.location} </span>
+                <p>
+                  Location: <span> {ad?.location} </span>
+                </p>
               </Col>
               <Col lg={"auto"}>
                 <Badge pill bg="dark" className="fs-4">
@@ -95,14 +96,9 @@ const Ad = ({ ad, showAd }) => {
                   <td>Stock:</td>
                   <td>{product?.stock}</td>
                 </tr>
-                <tr>
-                  <td>3</td>
-                  <td colSpan={2}>Larry the Bird</td>
-                </tr>
               </tbody>
             </Table>
-          </Col>
-          <Col lg={"auto"} className="">
+
             <Table striped bordered hover>
               <thead>
                 <th colSpan={3} className="text-center">
@@ -115,21 +111,21 @@ const Ad = ({ ad, showAd }) => {
                   <td>{ad?.id}</td>
                 </tr>
                 <tr>
-                  <td>publication date: </td>
+                  <td>Publication date: </td>
                   <td>{ad?.publicationDate.slice(0, 10)}</td>
                 </tr>
                 <tr>
-                  <td>Brand: </td>
-                  <td> {}</td>
+                  <td>Shipping:</td>
+                  <td>{ad?.shippingType}</td>
                 </tr>
-                <tr>
-                  <td>Stock:</td>
-                  <td>{ad?.stock}</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td colSpan={2}>Larry the Bird</td>
-                </tr>
+                {ad?.lastUpdateAt ? (
+                  <tr>
+                    <td>last update</td>
+                    <td>{ad?.lastUpdateAt.slice(0, 10)}</td>
+                  </tr>
+                ) : (
+                  ""
+                )}
               </tbody>
             </Table>
           </Col>

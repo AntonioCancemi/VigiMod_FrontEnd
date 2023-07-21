@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,300;0,400;0,600;0,700;1,600&display=swap');
+body{
+  font-family: 'Roboto Mono',
+  monospace !important;
+}
+  
+
 .main-col{background-color: #003264;}
 /* notification */
 
@@ -65,7 +72,7 @@
 .link-s-box:hover{background-color: #003264;}
 /* dashboard */
 .ad-dashboard-container{
-  
+  color: #24d15d;
   background-color: #003264;
 }
 .no-scroll-container{overflow-y: hidden;}
@@ -94,4 +101,36 @@
 .ad-container{
   background-color: white;
   color: black;border:solid #001f3f 5px;
+}
+/* piechart */
+.recharts-wrapper{
+  align-self: center;
+}
+.pie-chart-container{
+  height: fit-content !important;
+  width: fit-content !important;
+  background-color: rgba(255, 255, 255, 0.678) !important;
+}
+.pie-chart-container>h3{font-size: 25px;color: #001f3f;}
+/* mainDashboard */
+.dash-title{
+  background-color: #001f3f;
+}
+.shadow-effect {
+  
+  /* Regola la larghezza come desiderato */
+
+  /* Regola l'altezza come desiderato */
+  /* Colore di sfondo del contenitore */
+  box-shadow: 0px 10px 10px rgba(78, 78, 78, 0.445);
+  /* Configura l'ombra */
+  border-radius: 10px;
+  /* Regola la bordatura come desiderato */
+}
+.scrollable-list {
+  max-height: 800px !important;
+  /* Altezza massima della sezione */
+  overflow-y: auto !important;
+  /* Scorri verticalmente quando il contenuto supera l'altezza massima */
+  /* Altri stili per la sezione, come padding, sfondo, ecc. */
 }
